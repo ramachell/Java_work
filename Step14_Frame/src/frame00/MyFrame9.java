@@ -108,8 +108,16 @@ public class MyFrame9 extends JFrame implements ActionListener, KeyListener {
 		if (code == KeyEvent.VK_ENTER) {// 만일 엔터키를 눌렀다면
 			// JTextField 에 입력한 문자열을 읽어와서 DefaultListModel 객체에 추가해야 한다.
 			String name = inputName.getText();
+			if (name.length() == 0) {
+				name = " ";
+//				System.out.println(name);
+//				JOptionPane.showMessageDialog(this, "입력이 비었습니다");
+			}
+
+//			else {
 			model.addElement(name);
 			inputName.setText("");
+//			}
 		}
 
 	}
