@@ -11,5 +11,5 @@ public class HashMem {
 		this.name = name;
 		this.addr = addr;
 	}
-	public static 
+//	public static 
 }

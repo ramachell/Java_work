@@ -1,4 +1,4 @@
-package frame06;
+package frame00;
 
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;

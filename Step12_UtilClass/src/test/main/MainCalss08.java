@@ -18,9 +18,7 @@ public class MainCalss08 {
 		set1.add(9);
 		set1.add(9);
 		set1.add(5);
-		set1.
-
-				System.out.println(set1);
+//		set1.
 
 	}
 
