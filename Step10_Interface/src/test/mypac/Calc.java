@@ -6,6 +6,7 @@ package test.mypac;
 public interface Calc {
 
 	public double execute(double a, double b);
+//	아래 있으면 인터페이스 안됨! 그냥 전달값만 미리 지정!
 //	{
 //		double result = num1 + num2;
 //		return result;
