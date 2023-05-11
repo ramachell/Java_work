@@ -5,6 +5,5 @@
  * @author acorn
  *
  */
-module test {
-	requires java.desktop;
+module Step16_InOut {
 }
