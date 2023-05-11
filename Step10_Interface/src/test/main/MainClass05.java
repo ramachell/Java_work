@@ -35,8 +35,10 @@ public class MainClass05 {
 		// static 아니기때문에 m5객체 생성이 필요함
 		// MainCalss05. 으로 사용하면 안됨 (non-static)
 		m5.addd(3, 4, 6);
+
 		// static 이기떄문에 Main... 어쩌구 생략가능함
 		MainClass05.addd(1, 5);
+		addd(1, 5);
 
 	}
 
