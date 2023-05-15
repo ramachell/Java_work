@@ -40,6 +40,7 @@ public class MainClass09 {
 		String addr = dto.getAddr();
 		// sql문 실행해줄 pstmt 객체
 		PreparedStatement pstmt = null;
+		int a = 0;
 		try {
 			// 실행할 미완성 sql문
 			String sql = "insert into member values(member_seq.NEXTVAL,?,?)";
@@ -51,12 +52,13 @@ public class MainClass09 {
 			pstmt.setString(2, addr);
 
 			// sql 문 실행
-			pstmt.executeUpdate();
 			System.out.println("저장 했습니다.");
+			pstmt.executeUpdate();
 
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
+
 	}
 
 }
