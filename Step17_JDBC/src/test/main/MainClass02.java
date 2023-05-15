@@ -3,7 +3,6 @@ package test.main;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 
 /*
  * JDBC (Java DataBase Connectivity)
@@ -15,7 +14,8 @@ import java.sql.ResultSet;
  *  프로젝트에 마우스 우클릭 build path - configure Build Path - Libraries 탭
  *  classPath 선택 add external jar - 받은 ojdbc6.jar 선택후 apply 
  */
-public class MainClass01 {
+public class MainClass02 {
+
 	public static void main(String[] args) {
 		// DB 연결객체를 담을 지역 변수 만들기
 		Connection conn = null;
@@ -32,23 +32,25 @@ public class MainClass01 {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		int num = 6;
+		String name = "김6번";
+		String addr = "목동2";
+		// sql문 실행해줄 pstmt 객체
 		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-
 		try {
-			// 실행할 sql문
-			String sql = "select * from member order by num";
-			// sql을 입력한 prepareStatement 객체의 참조값 얻어오기
+			// 실행할 미완성 sql문
+			String sql = "insert into member values(?,?,?)";
+			// 미완성 sql 문 전달하면서 PreparedStatement 객체 참조값
 			pstmt = conn.prepareStatement(sql);
-			// sql을 실행하고 나온 결과값을 ResultSet 객체에 넣기
-			rs = pstmt.executeQuery();
-			while (rs.next()) {
-				int num = rs.getInt("num");
-				String name = rs.getString("name");
-				String addr = rs.getString("addr");
-				// 콘솔창에 출력해보기
-				System.out.println(num + " | " + name + " | " + addr);
-			}
+			// PreparedStatement 객체의 메소드를 이용해서 sql 완성 ?에 값 바인딩
+			// ?에 각각 대입하는것 1,2,3 은 순서
+			pstmt.setInt(1, num);
+			pstmt.setString(2, name);
+			pstmt.setString(3, addr);
+			// sql 문 실행
+			pstmt.executeUpdate();
+			System.out.println("저장 했습니다.");
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

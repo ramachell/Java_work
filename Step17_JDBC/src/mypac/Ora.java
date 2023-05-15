@@ -1,4 +1,4 @@
-package test.main;
+package mypac;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -15,8 +15,10 @@ import java.sql.ResultSet;
  *  프로젝트에 마우스 우클릭 build path - configure Build Path - Libraries 탭
  *  classPath 선택 add external jar - 받은 ojdbc6.jar 선택후 apply 
  */
-public class MainClass01 {
-	public static void main(String[] args) {
+public class Ora {
+
+	public static void select(String table) {
+
 		// DB 연결객체를 담을 지역 변수 만들기
 		Connection conn = null;
 
@@ -29,17 +31,17 @@ public class MainClass01 {
 			conn = DriverManager.getConnection(url, "scott", "tiger");
 			// 예외가 발생하지 않고 여기까지 실행순서가 내려오면 접속 성공이다.
 			System.out.println("Oracle DB 접속 성공");
-		} catch (Exception e) {
-			e.printStackTrace();
+		} catch (Exception e1) {
+			e1.printStackTrace();
 		}
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
 		try {
 			// 실행할 sql문
-			String sql = "select * from member order by num";
+
 			// sql을 입력한 prepareStatement 객체의 참조값 얻어오기
-			pstmt = conn.prepareStatement(sql);
+			pstmt = conn.prepareStatement("select * from " + table + " order by num");
 			// sql을 실행하고 나온 결과값을 ResultSet 객체에 넣기
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
@@ -47,12 +49,12 @@ public class MainClass01 {
 				String name = rs.getString("name");
 				String addr = rs.getString("addr");
 				// 콘솔창에 출력해보기
+
 				System.out.println(num + " | " + name + " | " + addr);
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
+		} catch (Exception e2) {
+			e2.printStackTrace();
 		}
 
 	}
-
 }
