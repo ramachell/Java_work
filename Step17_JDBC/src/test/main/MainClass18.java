@@ -22,6 +22,7 @@ public class MainClass18 {
 		DeptDto dto2 = new DeptDto(60, "aadd", "aaff");
 //		DeptDao.insert(dto2);
 //		DeptDao.delete(60);
+		// git 테스트용 추가 주석
 
 	}
 }
