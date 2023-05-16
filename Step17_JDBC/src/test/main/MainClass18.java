@@ -23,6 +23,7 @@ public class MainClass18 {
 //		DeptDao.insert(dto2);
 //		DeptDao.delete(60);
 		// git 테스트용 추가 주석
+		// git 테스트용 추가 주석2
 
 	}
 }
