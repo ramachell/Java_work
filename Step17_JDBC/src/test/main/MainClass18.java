@@ -19,8 +19,9 @@ public class MainClass18 {
 		} else {
 			System.out.println(num + " 번 부서는 존재 하지 않습니다!");
 		}
-		DeptDto dto2 = new DeptDto(50, "aadd", "aaff");
+		DeptDto dto2 = new DeptDto(60, "aadd", "aaff");
 //		DeptDao.insert(dto2);
-//		DeptDao.delete(50);
+//		DeptDao.delete(60);
+
 	}
 }
