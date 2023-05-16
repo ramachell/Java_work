@@ -1,4 +1,4 @@
-package test.dao;
+package test.mypac;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-import test.mypac.MemberDto;
 import test.util.DBConnect;
 
 /*
@@ -15,12 +14,12 @@ import test.util.DBConnect;
  * -DB 에 insert, update, delete, select 작업을 대신해 주는 객체를 생성할 클래스 설계하기
  */
 
-public class MemberDao {
+public class DeptDao {
 
 	// 인자로 전달되는 번호에 해당하는 회원 한명의 정보를 리턴하는 메소드
-	public MemberDto getData(int num) {
-		List<MemberDto> list = new ArrayList<>();
-		MemberDto dto = null;
+	public DeptDto getData(int deptno) {
+		List<DeptDto> list = new ArrayList<>();
+		DeptDto dto = null;
 		// 필요한 객체를 담을 지역 변수를 미리 만들기
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -31,19 +30,19 @@ public class MemberDao {
 			// Connection 객체의 참조값 얻어오기
 			conn = new DBConnect().getconn();
 			// 실행할 sql 문
-			String sql = "select * from member where num = ?";
+			String sql = "select * from dept where deptno = ?";
 			// sql 문을 대신 실행해줄 PreparedStatement 객체의 참조값 얻어오기
 			pstmt = conn.prepareStatement(sql);
 			// sql 문이 ? 가 존재하는 미완성이라면 여기서 완성한다.
-			pstmt.setInt(1, num);
+			pstmt.setInt(1, deptno);
 			// executeQuery()로 rs에 받기
 			rs = pstmt.executeQuery();// 수행하고 리턴되는값을 변수에 담는다.
 
 			while (rs.next()) {
-				dto = new MemberDto();
-				dto.setNum(rs.getInt("num"));
-				dto.setName(rs.getString("name"));
-				dto.setAddr(rs.getString("addr"));
+				dto = new DeptDto();
+				dto.setDeptno(rs.getInt("deptno"));
+				dto.setDname(rs.getString("dname"));
+				dto.setLoc(rs.getString("loc"));
 			}
 
 		} catch (Exception e) {
@@ -65,8 +64,8 @@ public class MemberDao {
 	};
 
 	// 전체 회원 정보 리턴하는 메소드
-	public List<MemberDto> getList() {
-		List<MemberDto> list = new ArrayList<>();
+	public List<DeptDto> getList() {
+		List<DeptDto> list = new ArrayList<>();
 
 		// 필요한 객체를 담을 지역 변수를 미리 만들기
 		Connection conn = null;
@@ -78,7 +77,7 @@ public class MemberDao {
 			// Connection 객체의 참조값 얻어오기
 			conn = new DBConnect().getconn();
 			// 실행할 sql 문
-			String sql = "select * from member order by num";
+			String sql = "select * from dept order by deptno";
 			// sql 문을 대신 실행해줄 PreparedStatement 객체의 참조값 얻어오기
 			pstmt = conn.prepareStatement(sql);
 			// sql 문이 ? 가 존재하는 미완성이라면 여기서 완성한다.
@@ -89,10 +88,10 @@ public class MemberDao {
 
 			while (rs.next()) {
 
-				MemberDto dto = new MemberDto();
-				dto.setNum(rs.getInt("num"));
-				dto.setName(rs.getString("name"));
-				dto.setAddr(rs.getString("addr"));
+				DeptDto dto = new DeptDto();
+				dto.setDeptno(rs.getInt("deptno"));
+				dto.setDname(rs.getString("dname"));
+				dto.setLoc(rs.getString("loc"));
 
 				list.add(dto);
 
@@ -116,7 +115,7 @@ public class MemberDao {
 	}
 
 	// 회원 정보 업데이트
-	public static boolean update(MemberDto dto) {
+	public static boolean update(DeptDto dto) {
 		// 필요한 객체를 담을 지역 변수를 미리 만들기
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -126,13 +125,13 @@ public class MemberDao {
 			// Connection 객체의 참조값 얻어오기
 			conn = new DBConnect().getconn();
 			// 실행할 sql 문
-			String sql = "update member set name = ? , addr = ? where num = ?";
+			String sql = "update dept set dname = ? , loc = ? where deptno = ?";
 			// sql 문을 대신 실행해줄 PreparedStatement 객체의 참조값 얻어오기
 			pstmt = conn.prepareStatement(sql);
 			// sql 문이 ? 가 존재하는 미완성이라면 여기서 완성한다.
-			pstmt.setString(1, dto.getName());
-			pstmt.setString(2, dto.getAddr());
-			pstmt.setInt(3, dto.getNum());
+			pstmt.setString(1, dto.getDname());
+			pstmt.setString(2, dto.getLoc());
+			pstmt.setInt(3, dto.getDeptno());
 
 			// insert or update or delete 문을 실제 수행한다. 변화된 row 의 갯수가 리턴된다.
 			rowCount = pstmt.executeUpdate();// 수행하고 리턴되는값을 변수에 담는다.
@@ -156,8 +155,8 @@ public class MemberDao {
 		}
 	}
 
-	// 회원 한명 정보 삭제하는 메소드 (num 만 입력해줌)
-	public static boolean delete(int num) {
+	// 회원 한명 정보 삭제하는 메소드 (deptno 만 입력해줌)
+	public static boolean delete(int deptno) {
 		// 필요한 객체를 담을 지역 변수를 미리 만들기
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -167,11 +166,11 @@ public class MemberDao {
 			// Connection 객체의 참조값 얻어오기
 			conn = new DBConnect().getconn();
 			// 실행할 sql 문
-			String sql = "delete from member where num = ?";
+			String sql = "delete from dept where deptno = ?";
 			// sql 문을 대신 실행해줄 PreparedStatement 객체의 참조값 얻어오기
 			pstmt = conn.prepareStatement(sql);
 			// sql 문이 ? 가 존재하는 미완성이라면 여기서 완성한다.
-			pstmt.setInt(1, num);
+			pstmt.setInt(1, deptno);
 			// insert or update or delete 문을 실제 수행한다. 변화된 row 의 갯수가 리턴된다.
 			rowCount = pstmt.executeUpdate();// 수행하고 리턴되는값을 변수에 담는다.
 		} catch (Exception e) {
@@ -196,7 +195,7 @@ public class MemberDao {
 	}
 
 	// 회원 한명의 정보를 저장하고 해당 작업의 성공 여부를 리턴해주는 메소드
-	public static boolean insert(MemberDto dto) {
+	public static boolean insert(DeptDto dto) {
 
 		// 필요한 객체를 담을 지역 변수를 미리 만들기
 		Connection conn = null;
@@ -207,12 +206,14 @@ public class MemberDao {
 			// Connection 객체의 참조값 얻어오기
 			conn = new DBConnect().getconn();
 			// 실행할 sql 문
-			String sql = "insert into member values(mem_seq.nextval,?,?)";
+			String sql = "insert into dept values(?,?,?)";
 			// sql 문을 대신 실행해줄 PreparedStatement 객체의 참조값 얻어오기
 			pstmt = conn.prepareStatement(sql);
 			// sql 문이 ? 가 존재하는 미완성이라면 여기서 완성한다.
-			pstmt.setString(1, dto.getName());
-			pstmt.setString(2, dto.getAddr());
+
+			pstmt.setInt(1, dto.getDeptno());
+			pstmt.setString(2, dto.getDname());
+			pstmt.setString(3, dto.getLoc());
 
 			// insert or update or delete 문을 실제 수행한다. 변화된 row 의 갯수가 리턴된다.
 			rowCount = pstmt.executeUpdate();// 수행하고 리턴되는값을 변수에 담는다.

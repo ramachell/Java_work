@@ -1,6 +1,6 @@
 package test.main;
 
-import test.dao.MemberDao;
+import test.mypac.MemberDao;
 import test.mypac.MemberDto;
 
 public class MainClass13 {
