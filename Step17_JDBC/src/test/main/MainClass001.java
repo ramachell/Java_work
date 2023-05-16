@@ -16,6 +16,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 public class MainClass001 extends JFrame {
+	// 23.5.15
 	static JTextField input1;
 	static JTextField input2;
 	static JTextField input3;
@@ -101,6 +102,7 @@ public class MainClass001 extends JFrame {
 			} catch (Exception e1) {
 				e1.printStackTrace();
 			}
+
 		});
 
 		view.addActionListener(e -> {
@@ -139,15 +141,14 @@ public class MainClass001 extends JFrame {
 					int num = rs.getInt("num");
 					String name = rs.getString("name");
 					String addr = rs.getString("addr");
-					ta.append(Integer.toString(num) + " | " + name + " | " + addr);
-					ta.append("\n");
+					ta.append(Integer.toString(num) + " | " + name + " | " + addr + "\n");
 				}
 
 				System.out.println("출력 완료");
 				JOptionPane.showMessageDialog(this, "DB view");
 
-			} catch (Exception e1) {
-				e1.printStackTrace();
+			} catch (Exception e2) {
+				e2.printStackTrace();
 			}
 
 		});
@@ -192,33 +193,12 @@ public class MainClass001 extends JFrame {
 			} catch (Exception e1) {
 				e1.printStackTrace();
 			}
+
 		});
 	}
 
-//	private static void oralogin() {
-//
-//		Connection conn = null;
-//		String msg1 = input1.getText();
-//		String msg2 = input2.getText();
-//		String msg3 = MainClass001.input3.getText();
-//
-//		try {
-//			// 오라클 드라이버 로딩
-//			Class.forName("oracle.jdbc.driver.OracleDriver");
-//			// 접속할 DB 의 정보 @아이피주소:port번호:db이름
-//			String url = "jdbc:oracle:thin:@localhost:1521:xe";
-//			// 계정 비밀번호를 이용해서 Connection 객체의 참조값 얻어오기
-//			conn = DriverManager.getConnection(url, "scott", "tiger");
-//			// 예외가 발생하지 않고 여기까지 실행순서가 내려오면 접속 성공이다.
-//			System.out.println("Oracle DB 접속 성공");
-//		} catch (Exception e1) {
-//			e1.printStackTrace();
-//		}
-//
-//	};
-
 	public static void main(String[] args) {
-		new MainClass001("Oracle DB 저장");
+		new MainClass001("Oracle DB");
 	}
 
 }
