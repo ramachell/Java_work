@@ -53,7 +53,7 @@ public class MainClass001 extends JFrame {
 		JTextArea ta = new JTextArea();
 		add(ta, BorderLayout.CENTER);
 
-		ta.setFont(new Font("맑은 고딕", Font.BOLD, 50));
+		ta.setFont(new Font("맑은 고딕", Font.BOLD, 30));
 
 		setVisible(true);
 

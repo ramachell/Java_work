@@ -18,7 +18,6 @@ public class MemberDao {
 
 	// 인자로 전달되는 번호에 해당하는 회원 한명의 정보를 리턴하는 메소드
 	public MemberDto getData(int num) {
-		List<MemberDto> list = new ArrayList<>();
 		MemberDto dto = null;
 		// 필요한 객체를 담을 지역 변수를 미리 만들기
 		Connection conn = null;

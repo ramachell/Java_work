@@ -10,8 +10,8 @@ public class MemberDto {
 		// TODO Auto-generated constructor stub
 	}
 
-	public MemberDto(int num, String name, String addr) {
-		this.num = num;
+	public MemberDto(String name, String addr) {
+
 		this.name = name;
 		this.addr = addr;
 
