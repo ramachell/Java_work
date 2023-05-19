@@ -17,14 +17,14 @@ import javax.swing.table.DefaultTableModel;
 import test.mypac.MemberDao;
 import test.mypac.MemberDto;
 
-public class TestFrame extends JFrame {
+public class TestFrame2 extends JFrame {
 
 //	private JTable table;
 //	private DefaultTableModel model;
 	DefaultTableModel model;
 
 	// 생성자
-	public TestFrame(String title) {
+	public TestFrame2(String title) {
 		super(title);
 
 		// 레이아웃
@@ -104,20 +104,10 @@ public class TestFrame extends JFrame {
 
 		});
 
-		// 테이블에 출력할 sample 데이터
-//		Object[] row1 = { 1, "김구라", "노량진" };
-//		Object[] row2 = { 2, "해골", "행신동" };
-//		Object[] row3 = { 3, "원숭이", "상도동" };
-		// sample 데이터를 모델에 추가하기
-//		model.addRow(row1);
-//		model.addRow(row2);
-//		model.addRow(row3);
-
-//
 	}
 
 	public static void main(String[] args) {
-		TestFrame f = new TestFrame("테스트");
+		TestFrame2 f = new TestFrame2("테스트");
 		f.setVisible(true);
 		f.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		f.setBounds(600, 300, 700, 500);
